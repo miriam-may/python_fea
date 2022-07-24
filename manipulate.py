@@ -30,7 +30,6 @@ colxy = []
 colyz = []
 colxz = []
 
-name_filler = 'name'
 list_filler = []
 
 #create instances of coordinate class
@@ -38,15 +37,15 @@ coordxx = Coordinate('xx', colxx)
 coordyy = Coordinate('yy', colyy)
 coordzz = Coordinate('zz', colzz)
 coordxy = Coordinate('xy', colxy)
-coordyz = Coordinate('ys', colyz)
+coordyz = Coordinate('yz', colyz)
 coordxz = Coordinate('xz', colxz)
 
 #create more empty instances, to be used as needed
-seven_coord = Coordinate(copy.deepcopy(name_filler), copy.deepcopy(list_filler))
-eight_coord = Coordinate(copy.deepcopy(name_filler), copy.deepcopy(list_filler))
-nine_coord = Coordinate(copy.deepcopy(name_filler), copy.deepcopy(list_filler))
-ten_coord = Coordinate(copy.deepcopy(name_filler), copy.deepcopy(list_filler))
-eleven_coord = Coordinate(copy.deepcopy(name_filler), copy.deepcopy(list_filler))
+seven_coord = Coordinate('xxx', copy.deepcopy(list_filler))
+eight_coord = Coordinate('yyy', copy.deepcopy(list_filler))
+nine_coord = Coordinate('zzz', copy.deepcopy(list_filler))
+ten_coord = Coordinate('xxy', copy.deepcopy(list_filler))
+eleven_coord = Coordinate('yyz', copy.deepcopy(list_filler))
 
 counter = 0
 
@@ -163,19 +162,19 @@ def addArr(of_cols):
                     coordyz.values.append(item.strip())
                 if countxz % int(num_of_cols) == 0:
                     coordxz.values.append(item.strip())
-                if seven_coord.coordinate_name is not 'name':
+                if num_of_cols <= 7:
                     if countseven % int(num_of_cols) == 0:
                         seven_coord.values.append(item.strip())
-                if eight_coord.coordinate_name is not 'name':
+                if num_of_cols <= 8:
                     if counteight % int(num_of_cols) == 0:
                         eight_coord.values.append(item.strip())
-                if nine_coord.coordinate_name is not 'name':
+                if num_of_cols <= 9:
                     if countnine % int(num_of_cols) == 0:
                         nine_coord.values.append(item.strip())
-                if ten_coord.coordinate_name is not 'name':
+                if num_of_cols <= 10:
                     if countten % int(num_of_cols) == 0:
                         ten_coord.values.append(item.strip())
-                if eleven_coord.coordinate_name is not 'name':
+                if num_of_cols <= 11:
                     if counteleven % int(num_of_cols) == 0:
                         eleven_coord.values.append(item.strip())
                 countxx+=1
