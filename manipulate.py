@@ -162,19 +162,19 @@ def addArr(of_cols):
                     coordyz.values.append(item.strip())
                 if countxz % int(num_of_cols) == 0:
                     coordxz.values.append(item.strip())
-                if num_of_cols <= 7:
+                if num_of_cols >= 7:
                     if countseven % int(num_of_cols) == 0:
                         seven_coord.values.append(item.strip())
-                if num_of_cols <= 8:
+                if num_of_cols >= 8:
                     if counteight % int(num_of_cols) == 0:
                         eight_coord.values.append(item.strip())
-                if num_of_cols <= 9:
+                if num_of_cols >= 9:
                     if countnine % int(num_of_cols) == 0:
                         nine_coord.values.append(item.strip())
-                if num_of_cols <= 10:
+                if num_of_cols >= 10:
                     if countten % int(num_of_cols) == 0:
                         ten_coord.values.append(item.strip())
-                if num_of_cols <= 11:
+                if num_of_cols >= 11:
                     if counteleven % int(num_of_cols) == 0:
                         eleven_coord.values.append(item.strip())
                 countxx+=1
