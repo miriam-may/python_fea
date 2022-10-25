@@ -21,7 +21,13 @@ class Coordinate():
         return(f"Coordinate name={self.coordinate_name}, ",f"values = {self.values}, ")
 
     def formatNumbers(self):
-        pass
+        temp_list = []
+        for node in self.values:
+            temp_node = decimal.Decimal(node)
+            temp_list.append(temp_node)
+        self.values.clear()
+        for node in temp_list:
+            self.values.append(node)
 
 
 #create list variables for known coordinates, and placeholder variables for unknown coordinate
