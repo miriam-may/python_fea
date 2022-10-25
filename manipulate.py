@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog as fd1
 from tkinter import messagebox
 import copy
+import decimal
 
 ftype=(('Text files', '*.txt'), ('All files', '*.*'))
 
@@ -18,6 +19,9 @@ class Coordinate():
         else:
             self.coordinate_name =f"{self.coordinate_name}"
         return(f"Coordinate name={self.coordinate_name}, ",f"values = {self.values}, ")
+
+    def formatNumbers(self):
+        pass
 
 
 #create list variables for known coordinates, and placeholder variables for unknown coordinate
@@ -162,19 +166,19 @@ def addArr(of_cols):
                     coordyz.values.append(item.strip())
                 if countxz % int(num_of_cols) == 0:
                     coordxz.values.append(item.strip())
-                if num_of_cols >= 7:
+                if int(num_of_cols) >= 7:
                     if countseven % int(num_of_cols) == 0:
                         seven_coord.values.append(item.strip())
-                if num_of_cols >= 8:
+                if int(num_of_cols) >= 8:
                     if counteight % int(num_of_cols) == 0:
                         eight_coord.values.append(item.strip())
-                if num_of_cols >= 9:
+                if int(num_of_cols) >= 9:
                     if countnine % int(num_of_cols) == 0:
                         nine_coord.values.append(item.strip())
-                if num_of_cols >= 10:
+                if int(num_of_cols) >= 10:
                     if countten % int(num_of_cols) == 0:
                         ten_coord.values.append(item.strip())
-                if num_of_cols >= 11:
+                if int(num_of_cols) >= 11:
                     if counteleven % int(num_of_cols) == 0:
                         eleven_coord.values.append(item.strip())
                 countxx+=1
@@ -191,6 +195,24 @@ def addArr(of_cols):
             
     #close the file        
     arrAdder.close()
+
+    #remove the extra string values from coordinate xx
+    temp_coordxx = []
+    line_number = 1
+
+    for node in coordxx.values:
+        if node.find('\n')!=-1:
+            string_to_delete = "Elem " + str(line_number) 
+            node = node[node.index('\n')+1:]
+            node = node.lstrip(string_to_delete)
+            line_number+=1
+        temp_coordxx.append(node)
+
+    coordxx.values.clear()
+
+    for item in temp_coordxx:
+        coordxx.values.append(item)
+            
 
     #tell the user the arrays have been created
     finish = tk.Label(text='Arrays have been created')
