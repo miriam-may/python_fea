@@ -39,4 +39,5 @@ Another problem involves the fact that the the first arraylist, xx, will always 
 The following technologies were used:
 - The IDE used was [Visual Studio Code](https://code.visualstudio.com/)
 - [Python 3](https://www.python.org/) was the language used
-- [Tkinter](https://docs.python.org/3/library/tkinter.html) was used to create the Graphical User Interface (GUI)
+- [Tkinter](https://docs.python.org/3/library/tkinter.html) was used originally to create the Graphical User Interface (GUI)
+- [Dear PyGUI](https://dearpygui.readthedocs.io/en/latest/) is being used in the current iteration of the GUI
