@@ -1,8 +1,7 @@
-import tkinter as tk
 from tkinter import filedialog as fd1
-from tkinter import messagebox
 import copy
 import decimal
+import dearpygui.dearpygui as dpg
 
 ftype=(('Text files', '*.txt'), ('All files', '*.*'))
 
@@ -28,6 +27,7 @@ class Coordinate():
         self.values.clear()
         for node in temp_list:
             self.values.append(node)
+        print(self.values[0])
 
 
 #create list variables for known coordinates, and placeholder variables for unknown coordinate
@@ -59,6 +59,12 @@ eleven_coord = Coordinate('yyz', copy.deepcopy(list_filler))
 
 counter = 0
 
+def clearError():
+    dpg.delete_item("error", children_only=False)
+
+def clear():
+    dpg.delete_item("success", children_only=False)
+
 def addCol(col_name):
 
     RESIDUAL_STRESS_TXT = fd1.askopenfilename(title='open original file', initialdir='/', filetypes=ftype)
@@ -78,7 +84,11 @@ def addCol(col_name):
     elif counter == 5:
         current_col = eleven_coord
     else:
-        messagebox.showwarning("No column available", "There are no empty column variables available. Please exit the program and inform support.")
+        #return False
+        with dpg.window(label="Error", tag="error"):
+            dpg.add_text("There are no empty column variables available. Please exit the program and inform support.")
+            dpg.add_button(label="Clear", callback=clearError)
+       
 
     #name the column with the user input from main module
     current_col.coordinate_name=next_col_name    
@@ -109,12 +119,17 @@ def addCol(col_name):
         newCol.close()
     newOrig.close()
 
-    #inforom the use that the program has run successfully
-    finlabel = tk.Label(text='Column added.').pack()
-    
     #This is for the benefit of the programmer, to check everything has worked correctly
     print(seven_coord.values[0])
     print(next_col_name)
+
+    #inform the use that the program has run successfully
+    with dpg.window(label="Result", tag="success"):
+        dpg.add_text("Column added")
+        dpg.add_button(label="Clear", callback=clear)
+    
+    
+    
 
 def addArr(of_cols):
 
@@ -136,13 +151,19 @@ def addArr(of_cols):
         
         #make sure that the user has entered a value in the text box
         if not num_of_cols:
-            messagebox.showwarning('No column value entered', 'Please enter an integer value for number of columns')
+            with dpg.window(label="Error", tag="error"):
+                dpg.add_text("Please enter a value in the input box")
+                dpg.add_button(label="Clear", callback=clearError)
+           
 
         #make sure the user has enetered only a whole numercial value
         try:
             int(num_of_cols)
         except ValueError:
-            messagebox.showwarning('Invalid user input', 'Please enter only an integer value for number of columns')
+            with dpg.window(label="Error", tag="error"):
+                dpg.add_text("Please enter only a whole number")
+                dpg.add_button(label="Clear", callback=clearError)
+            
         else: 
             x=int(num_of_cols)-(int(num_of_cols)-1)
             countxx=int(num_of_cols)
@@ -219,9 +240,11 @@ def addArr(of_cols):
     for item in temp_coordxx:
         coordxx.values.append(item)
             
-
-    #tell the user the arrays have been created
-    finish = tk.Label(text='Arrays have been created')
-
     #This is for the benefit of the programmer, to check everything has worked correctly
     print(coordxx.values[1])
+    coordxx.formatNumbers()
+
+    #tell the user the arrays have been created
+    with dpg.window(label="Result", tag="success"):
+        dpg.add_text("Arrays created.")
+        dpg.add_button(label="Clear", callback=clear)
