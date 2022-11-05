@@ -57,7 +57,7 @@ def delim():
         dpg.add_file_extension(".txt")
         dpg.add_file_extension("", color=(150, 255, 150, 255))
     
-    with dpg.window(label="Tutorial", tag="success", width=400, height=300):
+    with dpg.window(label="File opener", tag="success", width=400, height=300):
         dpg.add_button(label="Select files", callback=lambda: dpg.show_item("file_dialog_id"))
         dpg.add_button(label="Clear window", callback=clear)
         
@@ -128,7 +128,7 @@ def addElem():
         dpg.add_file_extension(".txt")
         dpg.add_file_extension("", color=(150, 255, 150, 255))
     
-    with dpg.window(label="Tutorial", tag="success", width=400, height=300):
+    with dpg.window(label="File opener", tag="success", width=400, height=300):
         dpg.add_button(label="Select files", callback=lambda: dpg.show_item("file_dialog_id"))
         dpg.add_button(label="Clear window", callback=clear)
 
