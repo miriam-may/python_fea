@@ -102,22 +102,22 @@ def addCol(col_name):
     #turn the new column into the text file into an array
     #then write the data of the new column onto the end of every node 
     #line until there are no lines in the new column left
-    with open(RESIDUAL_STRESS_TXT, 'w') as newOrig:
+    with open(RESIDUAL_STRESS_TXT, 'w') as newOriginal:
         with open(NEW_COLUMN_TXT, 'r') as newCol:
             i=0
-            newCol_arr = newCol.readlines()
+            newCol_lines = newCol.readlines()
             for line in fin:
-                if i < len(newCol_arr):
+                if i < len(newCol_lines):
                     if line.__contains__('e+00'):
-                        newOrig.write(line + str(newCol_arr[i]).rstrip('\n') + ',' '\n')
+                        newOriginal.write(line + str(newCol_lines[i]).rstrip('\n') + ',' '\n')
                         i+=1
                     else:
-                        newOrig.write(line + '\n')
+                        newOriginal.write(line + '\n')
                 else:
-                    newOrig.write(line + '\n')
-            current_col.values=newCol_arr
+                    newOriginal.write(line + '\n')
+            current_col.values=newCol_lines
         newCol.close()
-    newOrig.close()
+    newOriginal.close()
 
     #This is for the benefit of the programmer, to check everything has worked correctly
     print(seven_coord.values[0])
@@ -131,7 +131,7 @@ def addCol(col_name):
     
     
 
-def addArr(of_cols):
+def addArray(of_cols):
 
     #create variable to indicate to program which values belong in which columns
     num_of_cols=of_cols.get()
@@ -141,10 +141,10 @@ def addArr(of_cols):
     RESIDUAL_STRESS_TXT = fd1.askopenfilename(title='open original file', initialdir='/', filetypes=ftype)
 
     #open file as read and write
-    with open(RESIDUAL_STRESS_TXT, 'r+') as arrAdder:
+    with open(RESIDUAL_STRESS_TXT, 'r+') as array_adder:
 
         #read the fill to a variable
-        adder=arrAdder.read()
+        adder=array_adder.read()
 
         #create an array of values separated by the commas found in the txt file
         elmarr = adder.split(',')
@@ -221,7 +221,7 @@ def addArr(of_cols):
                 counteleven+=1
             
     #close the file        
-    arrAdder.close()
+    array_adder.close()
 
     #remove the extra string values from coordinate xx
     temp_coordxx = []

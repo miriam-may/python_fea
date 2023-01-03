@@ -21,7 +21,7 @@ def clearError_child():
     dpg.delete_item("error_child", children_only=False)
 
 #function to add delimiters
-def delim(): 
+def delimiters(): 
     def callback(sender, app_data):
         print(sender)
         print(app_data)
@@ -78,18 +78,18 @@ def addElem():
 
         with open(file_data['file_path_name'], 'r') as f:
             #get all lines in a list
-            checks=f.readlines()
+            allLines=f.readlines()
             #get just first line with no trailing whitespace or newline
-            checks1=checks[0].rstrip('\n')
+            allLines_stripped=allLines[0].rstrip('\n')
 
         f.close()
 
         with open(file_data['file_path_name'], 'w') as f2:
                 #check to see if the start of the file is formatted correctly
-                if checks1.endswith('5'):
+                if allLines_stripped.endswith('5'):
                     
                     #iterate through the lines in the file
-                    for line in checks:
+                    for line in allLines:
                         counter+=1
                     
                         #skip every second (non-node) line

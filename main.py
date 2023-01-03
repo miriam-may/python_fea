@@ -11,7 +11,7 @@ def dearpg():
     with dpg.window(label = "Tensor output data manipulation", tag="mw"):
         dpg.add_text("Format, manipulate and display data from tensor output files that have been saved as .txt files")
         dpg.add_text("Run formatting - add delimeters and number each Elem")
-        dpg.add_button(label = "Add delimeters", callback = format.delim)
+        dpg.add_button(label = "Add delimeters", callback = format.delimiters)
         
         dpg.add_button(label = "Number Elements", callback = format.addElem)      
            
@@ -23,7 +23,7 @@ def dearpg():
         dpg.add_text("How many columns are there in the .txt file currently, including any recently added?")
         of_cols = dpg.add_input_int(label = "Number of columns")
         number_of_cols = dpg.get_value(of_cols)
-        dpg.add_button(label = "Create coordinate arrays", callback = lambda:manipulate.addArr(number_of_cols))
+        dpg.add_button(label = "Create coordinate arrays", callback = lambda:manipulate.addArray(number_of_cols))
         
 
         with dpg.plot(label = "Data plot", query = True, height = 500, width = 500):
